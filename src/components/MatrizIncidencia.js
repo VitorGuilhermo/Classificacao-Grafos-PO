@@ -265,7 +265,7 @@ class MatrizIncidencia extends React.Component {
             for(let col = 0; col < mat[lin].length; col++)
                 if(parseInt(mat[lin][col]) > 0)
                     cont++;
-            if(cont !== this.props.quantidadeVertices - 1)
+            if(cont !== parseInt(this.props.quantidadeVertices) - 1)
                 return false;            
         }
         return true;
