@@ -222,12 +222,12 @@ class MatrizIncidencia extends React.Component {
     grauEmissaoIgualMI = (matriz) => {  
         let cont = 0, cont2;
         for(let col = 0; col < matriz[0].length; col++)
-            if(parseInt(matriz[0][col]) > 0)
+            if(parseInt(matriz[0][col]) < 0)
                     cont++;
         for(let lin = 1; lin < matriz.length; lin++){
             cont2 = 0;
             for(let col = 0; col < matriz[lin].length; col++)
-                if(parseInt(matriz[lin][col]) > 0)
+                if((parseInt(matriz[lin][col]) < 0) || (this.props.arestas[col][0] === this.props.arestas[col][1] && parseInt(matriz[lin][col]) > 0))
                     cont2++;
             if(cont2 !== cont)
                 return false;
@@ -238,12 +238,12 @@ class MatrizIncidencia extends React.Component {
     grauRecepcaoIgualMI = (matriz) => {
         let cont = 0, cont2;
         for(let col = 0; col < matriz[0].length; col++)
-            if(parseInt(matriz[0][col]) < 0)
-                    cont++;
+            if(parseInt(matriz[0][col]) > 0)
+                cont++;
         for(let lin = 1; lin < matriz.length; lin++){
             cont2 = 0;
             for(let col = 0; col < matriz[lin].length; col++)
-                if(parseInt(matriz[lin][col]) < 0)
+                if(parseInt(matriz[lin][col]) > 0)
                     cont2++;
             if(cont2 !== cont)
                 return false;
@@ -252,6 +252,8 @@ class MatrizIncidencia extends React.Component {
     }
 
     regularMI = (matriz) => {
+        if(!this.state.digrafo)
+            return this.grauRecepcaoIgualMI(matriz);
         return this.grauEmissaoIgualMI(matriz) && this.grauRecepcaoIgualMI(matriz);
     }
 
