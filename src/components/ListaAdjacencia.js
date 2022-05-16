@@ -86,7 +86,12 @@ class ListaAdjacencia extends React.Component {
     }
 
     regularLista = (lista) => {
-        return this.grauEmissaoIgualLista(lista) && this.grauRecepcaoIgualLista(lista);
+        var result = '';
+        if(this.grauRecepcaoIgualLista(lista))
+            result += 'Recepção ';
+        if(this.grauEmissaoIgualLista(lista))
+            result += 'Emissão';
+        return result;
     }
 
     completoLista = (lista) => {
@@ -133,7 +138,7 @@ class ListaAdjacencia extends React.Component {
                     Resultados
                 </h5>
                 <p> - Simples: {this.state.simples ? <FcOk/> : <FcHighPriority/>}</p>
-                <p> - Regular: {this.state.regular ? <FcOk/> : <FcHighPriority/>}</p>
+                <p> - Regular: {this.state.regular !== "" ? <><FcOk/> {this.state.regular}</> : <FcHighPriority/>}</p>
                 <p> - Completo: {this.state.completo ? <FcOk/> : <FcHighPriority/>}</p>
             </div> 
             

@@ -252,9 +252,12 @@ class MatrizIncidencia extends React.Component {
     }
 
     regularMI = (matriz) => {
-        if(!this.state.digrafo)
-            return this.grauRecepcaoIgualMI(matriz);
-        return this.grauEmissaoIgualMI(matriz) && this.grauRecepcaoIgualMI(matriz);
+        var result = '';
+        if(this.grauRecepcaoIgualMI(matriz))
+            result += 'Recepção ';
+        if(this.grauEmissaoIgualMI(matriz))
+            result += 'Emissão';
+        return result;
     }
 
     completoMI = (mat) => { 
@@ -293,7 +296,7 @@ class MatrizIncidencia extends React.Component {
                     Resultados
                 </h5>
                 <p> - Simples: {this.state.simples ? <FcOk /> : <FcHighPriority />}</p>
-                <p> - Regular: {this.state.regular ? <FcOk /> : <FcHighPriority />}</p>
+                <p> - Regular: {this.state.regular !== "" ? <><FcOk/> {this.state.regular}</> : <FcHighPriority />}</p>
                 <p> - Completo: {this.state.completo ? <FcOk /> : <FcHighPriority />}</p>
             </div>
 
