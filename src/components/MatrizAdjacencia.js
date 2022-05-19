@@ -6,7 +6,7 @@ class MatrizAdjacencia extends React.Component {
         super(props);
 
         this.state = {
-            nomesVertices: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J"],
+            nomesVertices: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"],
 
             simples: false,
             regular: false,
